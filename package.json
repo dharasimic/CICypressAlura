@@ -1,6 +1,17 @@
 {
+  "scripts": {
+    "lint": "eslint cypress/**/*.js && eslint cypress.config.js",
+    "lint:fix": "eslint cypress/**/*.js --fix && eslint cypress.config.js --fix",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:browser:edge": "cypress run --browser edge",
+    "test:tablet": "cypress run --config viewportWidth=768 viewportHeight=1024"
+},
   "devDependencies": {
+    "@eslint/js": "^9.21.0",
     "cypress": "^13.7.2",
+    "eslint": "^9.21.0",
+    "eslint-plugin-cypress": "^4.1.0",
+    "globals": "^16.0.0",
     "mochawesome": "^7.1.3"
   }
 }
