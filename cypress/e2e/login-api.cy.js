@@ -1,4 +1,19 @@
 describe('Testes em API', () => {
+    context('Validação', () => {
+        it('Verifica se a API está acessível', () => {
+            cy.request({
+                method: 'GET',
+                url: Cypress.env('apiClinica'),
+                failOnStatusCode: false
+            }).then((response) => {
+                cy.log(`Status retornado: ${response.status}`)
+                cy.log(`Body: ${JSON.stringify(response.body)}`)
+                expect(response.status).to.eq(200)
+            })
+        })
+        
+    })
+
     context('Testes em rotas com usuário autorizado', () => {
         beforeEach(() => {
             cy.loginApi(Cypress.env('email'), Cypress.env('senha'))
