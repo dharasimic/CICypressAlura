@@ -36,11 +36,12 @@ jobs:
             sleep 1
           done
           echo "Frontend is running successfully."
+          curl -s http://localhost:3000 # Added for additional logging
 
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
-              spec: |
-                cypress/e2e/cadastro-sucesso.cy.js
-                cypress/e2e/dashboard.cy.js
-              wait-on: 'http://localhost:3000,http://localhost:8080'
+          spec: |
+            cypress/e2e/cadastro-sucesso.cy.js
+            cypress/e2e/dashboard.cy.js
+          wait-on: 'http://localhost:3000,http://localhost:8080'
