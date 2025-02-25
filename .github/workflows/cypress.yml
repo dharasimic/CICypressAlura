@@ -20,19 +20,32 @@ jobs:
           cd server
           npm install
           nohup npm start &
-          until curl -s -o /dev/null -w "%{http_code}" http://localhost:8080 | grep -q "200"; do
-            echo "Waiting for backend to start..."
-            sleep 1
+          timeout=60
+          while ! curl -s -o /dev/null -w "%{http_code}" http://localhost:8080 | grep -q "200"; do
+          echo "Waiting for backend to start..."
+          timeout=$((timeout - 1))
+          if [ $timeout -le 0 ]; then
+          echo "Backend failed to start within the expected time."
+          exit 1
+          fi
+          sleep 1
           done
           echo "Backend is running successfully."
+
       - name: Start Web App FrontEnd
         run: |
           cd web
           npm install
           nohup npm start &
-          until curl -s http://localhost:3000 | grep -q "<title>"; do
-            echo "Waiting for web app to start..."
-            sleep 1
+          timeout=60
+          while ! curl -s http://localhost:3000 | grep -q "<title>"; do
+          echo "Waiting for web app to start..."
+          timeout=$((timeout - 1))
+          if [ $timeout -le 0 ]; then
+          echo "Frontend failed to start within the expected time."
+          exit 1
+          fi
+          sleep 1
           done
           echo "Frontend is running successfully."
           curl -s http://localhost:3000 # Added for additional logging
