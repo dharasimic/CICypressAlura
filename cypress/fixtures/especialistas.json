@@ -1,0 +1,32 @@
+{
+    "especialistas": [
+        {
+            "nome": "Ana Oliveira",
+            "email": "ana.oliveira@example.com",
+            "senha": "abcd1234",
+            "especialidade": "pediatria",
+            "crm": 9876543,
+            "telefone": "(123) 456-7890",
+            "imagem": "img123.jpg",
+            "cep": 12345678,
+            "rua": "Rua das Flores",
+            "numero": 123,
+            "complemento": "apto 101",
+            "estado": "São Paulo"
+        },
+        {
+            "nome": "Carlos Santos",
+            "email": "carlos.santos@example.com",
+            "senha": "senha123",
+            "especialidade": "ginecologia",
+            "crm": 1234567,
+            "telefone": "(987) 654-3210",
+            "imagem": "img456.jpg",
+            "cep": 98765432,
+            "rua": "Av. Principal",
+            "numero": 456,
+            "complemento": "casa",
+            "estado": "Rio de Janeiro"
+        }
+    ]
+}
