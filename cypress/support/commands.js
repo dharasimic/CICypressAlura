@@ -25,3 +25,21 @@ Cypress.Commands.add('cadastraEspecialista', (nome, email, senha, especialidade,
     cy.get('[data-test="inputEspecialistaEstado"]').type(estado)
 
 })
+
+Cypress.Commands.add('loginApi', (email, senha) => {
+    cy.request({
+        method: 'POST',
+        url: Cypress.env('apiLogin'),
+        failOnStatusCode: false,
+        body: {
+            email: email,
+            senha: senha
+        }
+    }).then(response => {
+        expect(response.status).to.eq(200);
+        expect(response.body.auth).to.equal(true);
+        expect(response.body.rota).to.eq('/clinica');
+        expect(response.body.token).to.exist;
+        cy.wrap(response.body.token).as('token');
+    })
+})
