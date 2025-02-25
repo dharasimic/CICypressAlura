@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+      matrix:
+        containers: [1, 2]
 
     steps:
       - name: Checkout
@@ -43,3 +45,9 @@ jobs:
             cypress/e2e/cadastro-sucesso.cy.js
             cypress/e2e/dashboard.cy.js
           wait-on: 'http://localhost:3000,http://localhost:8080'
+          record: true
+          parallel: true
+          group: 'Cypress Tests'
+        env:
+            CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
