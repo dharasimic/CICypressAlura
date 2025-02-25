@@ -21,8 +21,8 @@ jobs:
           npm install
           nohup npm start &
           until curl -s -o /dev/null -w "%{http_code}" http://localhost:8080 | grep -q "200"; do
-            echo "Waiting for backend to start..."
-            sleep 1
+          echo "Waiting for backend to start..."
+          sleep 1
           done
           echo "Backend is running successfully."
       - name: Start Web App FrontEnd
@@ -31,8 +31,8 @@ jobs:
           npm install
           nohup npm start &
           until curl -s http://localhost:3000 | grep -q "<title>"; do
-            echo "Waiting for web app to start..."
-            sleep 1
+          echo "Waiting for web app to start..."
+          sleep 1
           done
           echo "Frontend is running successfully."
           curl -s http://localhost:3000 # Added for additional logging
@@ -43,6 +43,3 @@ jobs:
             cypress/e2e/cadastro-sucesso.cy.js
             cypress/e2e/dashboard.cy.js
           wait-on: 'http://localhost:3000,http://localhost:8080'
-        env: 
-          CYPRESS_RECORDD_KEY: ${{ secrets.CYPRESS_RECORDD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
