@@ -14,7 +14,7 @@ describe('Página de cadastro', () => {
 
     context('Primeira parte da sessão de cadastro', () => {
         it('Digita dados da clínica e exibe a área para inserção de dados técnicos', () => {
-            const senha = faker.internet.password({length: 8, memorable: true});
+            const senha = faker.internet.password({ length: 8, memorable: true });
             cy.get('[href="/cadastro"]').click();
             cy.get('[data-test="inputNome"]').type(faker.person.fullName());
             cy.get('[data-test="inputCNPJ"]').type(faker.string.numeric(14));
@@ -28,7 +28,7 @@ describe('Página de cadastro', () => {
     });
 
     context('Segunda parte da sessão de cadastro', () => {
-        const senha = faker.internet.password({length: 8, memorable: true});
+        const senha = faker.internet.password({ length: 8, memorable: true });
         it('Cadastra uma clínica', () => {
             cy.get('[href="/cadastro"]').click();
             cy.get('[data-test="inputNome"]').type(faker.internet.userName());
@@ -44,7 +44,7 @@ describe('Página de cadastro', () => {
             cy.get('[data-test="inputRua"]').type(faker.location.street());
             cy.get('[data-test="inputNumero"]').type(faker.location.buildingNumber());
             cy.get('[data-test="inputComplemento"]').type(faker.location.secondaryAddress());
-            cy.get('[data-test="inputEstado"]').type(faker.location.state({abbreviated: true}));
+            cy.get('[data-test="inputEstado"]').type(faker.location.state({ abbreviated: true }));
 
             cy.contains('Cadastrar').click();
             cy.location('pathname').should('equal', '/login');
